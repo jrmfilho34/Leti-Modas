@@ -15,6 +15,15 @@ class CreateEnderecosTable extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('entrega')->nullable()->default(false);
+            $table->string('cidade');
+            $table->string('bairro');
+            $table->string('rua');
+            $table->string('CEP');  
+            $table->string('telefone');
+            $table->string('visitor');
             $table->timestamps();
         });
     }

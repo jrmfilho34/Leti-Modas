@@ -15,6 +15,12 @@ class CreateDescontosTable extends Migration
     {
         Schema::create('descontos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('produtos_id');
+            $table->foreign('produtos_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->string('nome');
+            $table->float('desconto');
+            $table->date('validade');
+            $table->boolean('ativo')->nullable()->default(false);
             $table->timestamps();
         });
     }

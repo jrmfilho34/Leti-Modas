@@ -15,6 +15,9 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('produto_id')->unsigned();
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->enum('categoria', ['masculino', 'feminino','infantil','bebe','outros'])->nullable()->default('outros');
             $table->timestamps();
         });
     }

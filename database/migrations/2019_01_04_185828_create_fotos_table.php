@@ -15,6 +15,9 @@ class CreateFotosTable extends Migration
     {
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('produto_id')->unsigned();
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->text('local');
             $table->timestamps();
         });
     }
